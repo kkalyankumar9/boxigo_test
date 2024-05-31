@@ -3,7 +3,7 @@
 # Tech Stack
 React.js, Tailwind CSS
 ## Deployed link
- https://boxigo-test-j4q5jewxi-kalyankumars-projects.vercel.app
+https://boxigo-test-13v1xnkg5-kalyankumars-projects.vercel.app/
 
 
 ## ScreenShots
