@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { FaArrowRight, FaCarSide } from 'react-icons/fa';
-import { GiPathDistance } from 'react-icons/gi';
-import { IoMdHome } from 'react-icons/io';
-import { TiPencil } from 'react-icons/ti';
-import { TbInfoTriangle } from 'react-icons/tb';
+import React, { useEffect, useState } from "react";
+import { FaArrowRight, FaCarSide } from "react-icons/fa";
+import { GiPathDistance } from "react-icons/gi";
+import { IoMdHome } from "react-icons/io";
+import { TiPencil } from "react-icons/ti";
+import { TbInfoTriangle } from "react-icons/tb";
 
-import ExpandDetpage from './expandDet';
+import ExpandDetpage from "./expandDet";
 
 const MyMoves = () => {
   const [moves, setMoves] = useState([]);
@@ -13,13 +13,13 @@ const MyMoves = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://test.api.boxigo.in/sample-data/')
-      .then(response => response.json())
-      .then(data => {
+    fetch("http://test.api.boxigo.in/sample-data/")
+      .then((response) => response.json())
+      .then((data) => {
         setMoves(data.Customer_Estimate_Flow);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
@@ -40,7 +40,7 @@ const MyMoves = () => {
   return (
     <div className="p-5">
       <h1 className="font-bold text-xl mb-4">My Moves</h1>
-      {moves.map(move => (
+      {moves.map((move) => (
         <div key={move.estimate_id} className="p-5 shadow-md border mb-4">
           <div className="flex items-center mb-2">
             <span className="font-bold text-sm">From: </span>
@@ -65,32 +65,49 @@ const MyMoves = () => {
             </div>
           </div>
           <div className="flex mb-4">
-            <button className="text-red-500 border border-red-500 px-4 py-2 rounded" onClick={() => handleToggle(move.estimate_id)}>
-              {expandedMove === move.estimate_id ? 'Hide Details' : 'View move details'}
+            <button
+              className="text-red-500 border border-red-500 px-4 py-2 rounded"
+              onClick={() => handleToggle(move.estimate_id)}
+            >
+              {expandedMove === move.estimate_id
+                ? "Hide Details"
+                : "View move details"}
             </button>
-            <button className="bg-red-500 text-white ml-2 px-4 py-2 rounded">Quotes Awaiting</button>
+            <button className="bg-red-500 text-white ml-2 px-4 py-2 rounded">
+              Quotes Awaiting
+            </button>
           </div>
           <div className="flex items-center mt-2 text-gray-500 text-sm">
             <TbInfoTriangle className="mr-2 text-red-500" />
             <span className="font-bold">Disclaimer: </span>
-            <span className="ml-2">Please update your move date before two days of shifting</span>
+            <span className="ml-2">
+              Please update your move date before two days of shifting
+            </span>
           </div>
           {expandedMove === move.estimate_id && (
             <div className="mb-4 mt-10">
               <div className="flex justify-between">
                 <h2 className="font-bold mb-2 mt-2">Additional Information</h2>
-                <button className="text-red-500 border border-red-500 px-4 py-2 rounded">Edit Additional Info</button>
+                <button className="text-red-500 border border-red-500 px-4 py-2 rounded">
+                  Edit Additional Info
+                </button>
               </div>
               <span className="text-sm">Test Data</span>
               <div className="flex justify-between">
                 <h2 className="font-bold mt-4">House Details</h2>
-                <button className="text-red-500 border border-red-500 px-4 py-2 rounded mt-4">Edit House Details</button>
+                <button className="text-red-500 border border-red-500 px-4 py-2 rounded mt-4">
+                  Edit House Details
+                </button>
               </div>
-              <h3 className="mt-4 text-red-500 font-bold">Existing House Details</h3>
+              <h3 className="mt-4 text-red-500 font-bold">
+                Existing House Details
+              </h3>
               <div className="flex justify-between font-bold">
                 <span>Floor No. </span>
                 <span className="mr-8">Elevator Available: </span>
-                <span className="mr-60">Distance from Elevator / Staircase to truck: </span>
+                <span className="mr-60">
+                  Distance from Elevator / Staircase to truck:{" "}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span>{move.old_floor_no}</span>
@@ -101,7 +118,9 @@ const MyMoves = () => {
               <div className="flex justify-between font-bold">
                 <span>Floor No. </span>
                 <span className="mr-8">Elevator Available: </span>
-                <span className="mr-60">Distance from Elevator / Staircase to truck: </span>
+                <span className="mr-60">
+                  Distance from Elevator / Staircase to truck:{" "}
+                </span>
               </div>
               <div className="flex justify-between">
                 <span>{move.new_floor_no}</span>
@@ -110,11 +129,13 @@ const MyMoves = () => {
               </div>
               <div className="flex justify-between">
                 <h2 className="font-bold mb-2 mt-4">Inventory Details</h2>
-                <button className="text-red-500 border border-red-500 px-4 py-2 rounded mt-3 ml-2">Edit Inventory</button>
+                <button className="text-red-500 border border-red-500 px-4 py-2 rounded mt-3 ml-2">
+                  Edit Inventory
+                </button>
               </div>
               <div className="mt-4">
                 <div className="accordion">
-                  {move.items.inventory.map(item => (
+                  {move.items.inventory.map((item) => (
                     <ExpandDetpage key={item.id} data={item} />
                   ))}
                 </div>
